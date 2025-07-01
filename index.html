@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeeIPTV - The Ultimate All-in-One Streaming Platform</title>
+    <meta name="description" content="Experience the future of streaming with ZeeIPTV's intelligent multi-network platform. Get 25,000+ channels, 150,000+ VOD, and all OTTs. Download our official app and start your free trial.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Animate On Scroll (AOS) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #22d3ee; --color-secondary: #34d399; --color-accent: #fde047;
+            --bg-dark: #020617; --bg-light: #0f172a; --border-color: #1e293b;
+        }
+        html { background-color: var(--bg-dark); }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-dark); color: #e5e7eb; overflow-x: hidden; }
+        .gradient-text { background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        
+        .hero-animated-bg { position: relative; background-color: var(--bg-dark); overflow: hidden; }
+        .hero-animated-bg::before, .hero-animated-bg::after { content: ''; position: absolute; border-radius: 50%; filter: blur(120px); }
+        .hero-animated-bg::before { width: 600px; height: 600px; background-color: rgba(34, 211, 238, 0.1); top: -150px; left: -200px; animation: wave 15s infinite ease-in-out; }
+        .hero-animated-bg::after { width: 500px; height: 500px; background-color: rgba(52, 211, 153, 0.1); bottom: -150px; right: -200px; animation: wave 12s infinite ease-in-out reverse; }
+        @keyframes wave { 0% { transform: scale(1) translateX(0); } 50% { transform: scale(1.2) translateX(100px); } 100% { transform: scale(1) translateX(0); } }
+        
+        .cta-button-glow { box-shadow: 0 0 8px var(--color-secondary), 0 0 15px var(--color-secondary), inset 0 0 5px rgba(255,255,255,0.2); }
+        .cta-button-glow:hover { box-shadow: 0 0 15px var(--color-secondary), 0 0 35px var(--color-secondary), inset 0 0 10px rgba(255,255,255,0.3); }
+        
+        /* New Platform Card Style */
+        .platform-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+        .platform-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--color-secondary);
+        }
+        .platform-card::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at center, rgba(52, 211, 153, 0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1;
+        }
+        .platform-card:hover::before { opacity: 1; }
+        .platform-card > * { position: relative; z-index: 2; }
+
+        .modal { transition: opacity 0.25s ease; }
+        
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; box-shadow: 2px 2px 6px rgba(0,0,0,0.4); z-index: 100; transition: transform 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <!-- =========== Floating WhatsApp Button =========== -->
+    <a href="https://wa.me/923299422773" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mx-auto mt-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.505 1.889 6.335l.943 1.523-1.42 5.174 5.068-1.325.894.947z"/></svg>
+    </a>
+
+    <!-- =========== Header =========== -->
+    <header class="bg-slate-900/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold gradient-text">ZeeIPTV</a>
+            <div class="hidden lg:flex items-center space-x-8 text-lg"><a href="#platform" class="hover:text-green-400 transition-colors">Our Platform</a><a href="#download" class="hover:text-green-400 transition-colors">Apps</a><a href="#pricing" class="hover:text-green-400 transition-colors">Pricing</a><a href="#faq" class="hover:text-green-400 transition-colors">FAQ</a></div>
+            <a href="#pricing" class="bg-green-500 hover:bg-green-600 text-slate-900 font-bold py-2 px-6 rounded-full shadow-lg cta-button-glow transition-all duration-300 transform hover:scale-105">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- =========== Hero Section =========== -->
+        <section class="hero-animated-bg pt-40 pb-24 px-6 text-center">
+            <div class="container mx-auto relative z-10">
+                <h1 class="text-5xl md:text-7xl font-black mb-4 leading-tight" data-aos="fade-down">One Account. Six Networks. Infinite Entertainment.</h1>
+                <p class="max-w-3xl mx-auto mb-10 text-lg md:text-xl text-gray-300" data-aos="fade-up" data-aos-delay="200">Stop settling for unstable, limited IPTV. Our revolutionary multi-network platform fuses the power of the world's best providers into one seamless, buffer-free super-service. This is the last subscription you'll ever need.</p>
+                <div class="flex justify-center items-center gap-4" data-aos="fade-up" data-aos-delay="400"><a href="#pricing" class="bg-green-500 hover:bg-green-600 text-slate-900 font-bold py-4 px-10 rounded-full shadow-lg cta-button-glow transition-all duration-300 transform hover:scale-105 text-lg">Claim Your Free Trial</a></div>
+            </div>
+        </section>
+
+        <!-- =========== Multi-Server Platform Section =========== -->
+        <section id="platform" class="py-20 px-6 bg-black">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up">More Than IPTV. It's a Super-Network.</h2>
+                <p class="max-w-4xl mx-auto mb-16 text-lg text-gray-300" data-aos="fade-up" data-aos-delay="100">Your single ZeeIPTV account is a master key that unlocks the best features from multiple, independent networks. Our PredictiveStream™ AI automatically routes you to the fastest server for any channel, guaranteeing an unparalleled experience.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="platform-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200"><img src="https://i.ibb.co/k2h43X9/opplex.png" alt="Opplex Logo" class="h-10 mx-auto mb-4"/><h3 class="text-2xl font-bold mb-2">Opplex: The VOD Universe</h3><p class="font-semibold text-cyan-300 mb-4">For the Binge-Watcher</p><ul class="text-left space-y-2 text-gray-400"> <li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>150,000+ Movies & 50,000+ Series</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Daily Updates with Cinema Releases</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Cinema-Grade 4K & Dolby Audio</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Integrated IMDb Ratings & Trailers</li></ul></div>
+                    <div class="platform-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300"><img src="https://i.ibb.co/Y0s476h/starshare.png" alt="Starshare Logo" class="h-12 mx-auto mb-4"/><h3 class="text-2xl font-bold mb-2">StarShare: Live Sports Redefined</h3><p class="font-semibold text-cyan-300 mb-4">For the Die-Hard Fan</p><ul class="text-left space-y-2 text-gray-400"><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>BufferGuard™ for Major Events</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>TrueFrame™ 60fps for Ultra-Smoothness</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>All Global Sports & PPV Included</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Multi-Audio Commentary Options</li></ul></div>
+                    <div class="platform-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400"><img src="https://static.vecteezy.com/system/resources/previews/021/015/170/original/b1g-modern-logo-text-style-design-free-vector.jpg" alt="B1G Logo" class="h-12 w-12 rounded-full mx-auto mb-4"/><h3 class="text-2xl font-bold mb-2">B1G: The World Explorer</h3><p class="font-semibold text-cyan-300 mb-4">For Global Content Lovers</p><ul class="text-left space-y-2 text-gray-400"><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>25,000+ Channels from 100+ Countries</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Extensive European, Asian & LATAM Lists</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>14-Day Catch-Up TV & Cloud PVR</li><li class="flex"><svg class="w-5 h-5 mr-2 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>AI-Powered Smart EPG Guide</li></ul></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== App Download Section =========== -->
+        <section id="download" class="py-20 px-6 bg-slate-900">
+            <div class="container mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">One-Click Install on Any Device</h2>
+                    <p class="text-lg text-gray-400 max-w-3xl mx-auto">Get our official ZeePlayer, or use your favorite third-party app. We support them all. Click below for simple, guided installation.</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8" data-aos="fade-up" data-aos-delay="200">
+                    <button onclick="openModal('zeeplayer')" class="flex flex-col items-center justify-center text-center p-4 bg-gray-800 hover:bg-green-500 hover:text-slate-900 transition-all duration-300 text-white font-semibold rounded-lg"><svg class="w-12 h-12 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.782 6.096a.999.999 0 0 0-.82-1.55l-5.467.911-3.667-3.667a1 1 0 0 0-1.414 0L6.748 5.457l-5.467-.911a1 1 0 0 0-1.18 1.18l.911 5.467-3.667 3.666a1 1 0 0 0 0 1.414l3.667 3.667-.911 5.467a1 1 0 0 0 1.55.82l5.467-.911 3.667 3.667a1 1 0 0 0 1.414 0l3.666-3.667 5.467.911a1 1 0 0 0 .82-1.55l-.911-5.467 3.667-3.666a1 1 0 0 0 0-1.414l-3.667-3.667.911-5.466zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg>ZeePlayer (Official)</button>
+                    <button onclick="openModal('iptv-smarters')" class="flex flex-col items-center justify-center text-center p-4 bg-gray-800 hover:bg-green-500 hover:text-slate-900 transition-all duration-300 text-white font-semibold rounded-lg"><svg class="w-12 h-12 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM8 17H5v-2h3v2zm0-3H5v-2h3v2zm0-3H5V9h3v2zm5 6h-3v-2h3v2zm0-3h-3v-2h3v2zm0-3h-3V9h3v2zm5 6h-3v-2h3v2zm0-3h-3v-2h3v2zm0-3h-3V9h3v2z"/></svg>IPTV Smarters Pro</button>
+                    <button onclick="openModal('xtream-player')" class="flex flex-col items-center justify-center text-center p-4 bg-gray-800 hover:bg-green-500 hover:text-slate-900 transition-all duration-300 text-white font-semibold rounded-lg"><svg class="w-12 h-12 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path d="m9.5 16.5 7-4.5-7-4.5z"/></svg>TiviMate / XCIPTV</button>
+                    <button onclick="openModal('other-devices')" class="flex flex-col items-center justify-center text-center p-4 bg-gray-800 hover:bg-green-500 hover:text-slate-900 transition-all duration-300 text-white font-semibold rounded-lg"><svg class="w-12 h-12 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v12H4V6zm2-2v16h12V4H6z"/><path d="M8 8h8v8H8z"/></svg>Other Devices</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== Pricing Section =========== -->
+        <section id="pricing" class="py-20 px-6 bg-black">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up">Simple Pricing, Unbeatable Value.</h2>
+                <p class="max-w-2xl mx-auto mb-16 text-gray-300" data-aos="fade-up" data-aos-delay="100">Every plan gets you full access to our entire multi-server platform. Choose the plan that's right for you.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-center">
+                    <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-xl" data-aos="fade-right" data-aos-delay="400"><h3 class="text-2xl font-bold text-yellow-400">Free Trial</h3><p class="text-gray-400 mb-6">Experience It All</p><p class="text-5xl font-extrabold mb-4">$0</p><p class="text-gray-500 mb-6">24-Hour Full Access</p><a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 w-full block rounded-full transition-all duration-300">Start For Free</a></div>
+                    <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300"><h3 class="text-2xl font-bold">1 Month</h3><p class="text-gray-400 mb-6">For The Casual Viewer</p><p class="text-5xl font-extrabold mb-4">$1<span class="text-lg font-medium text-gray-400">/mo</span></p><p class="text-gray-500 mb-6">No Commitment</p><a href="#" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 w-full block rounded-full transition-all duration-300">Choose Monthly</a></div>
+                    <div class="bg-slate-900 border-2 border-green-500 p-8 rounded-xl shadow-2xl shadow-green-500/20 transform lg:scale-110" data-aos="zoom-in" data-aos-delay="100"><span class="absolute top-0 left-1/2 -translate-x-1/2 -mt-5 bg-green-500 text-slate-900 text-sm font-bold px-4 py-1 rounded-full uppercase tracking-wider">Best Value</span><h3 class="text-3xl font-bold">1 Year</h3><p class="text-gray-400 mb-6">For The Smart Saver</p><p class="text-6xl font-black mb-4">$6<span class="text-xl font-medium text-gray-400">/mo</span></p><p class="text-gray-500 mb-6">Billed $72 annually - Save 50%</p><a href="#" class="bg-green-500 hover:bg-green-600 text-slate-900 font-bold py-4 px-8 w-full block rounded-full cta-button-glow transition-all duration-300 text-lg">Go Yearly & Save Big</a></div>
+                    <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-xl" data-aos="fade-left" data-aos-delay="300"><h3 class="text-2xl font-bold">6 Months</h3><p class="text-gray-400 mb-6">For The Committed Fan</p><p class="text-5xl font-extrabold mb-4">$8<span class="text-lg font-medium text-gray-400">/mo</span></p><p class="text-gray-500 mb-6">Billed $48 every 6 months</p><a href="#" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 w-full block rounded-full transition-all duration-300">Choose 6 Months</a></div>
+                </div>
+                <div class="mt-12" data-aos="fade-up"><div class="inline-flex items-center bg-slate-800 p-4 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><p class="font-semibold text-white">30-Day Money-Back Guarantee on all paid plans!</p></div></div>
+            </div>
+        </section>
+
+        <!-- =========== FAQ Section (Condensed for brevity, can be expanded) =========== -->
+        <section id="faq" class="py-20 px-6 bg-slate-900">
+            <div class="container mx-auto max-w-4xl" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <details class="bg-slate-800 p-6 rounded-lg group cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center">How is this different from other IPTV services? <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-gray-400 mt-4">Most providers use a single, often overloaded, server. We operate a multi-network platform. This means we integrate several premium, independent IPTV services into one account for you. Our system automatically switches you to the best-performing stream, virtually eliminating buffering and downtime. You get the content and stability of 6+ services for the price of one.</p></details>
+                    <details class="bg-slate-800 p-6 rounded-lg group cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center">What devices are supported? <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-gray-400 mt-4">Our service works on virtually any device, including Amazon Firestick, Android TV/Boxes, Smart TVs (Samsung, LG), Apple TV, iOS & Android phones/tablets, and computers. We provide an M3U link and Xtream Codes login that are compatible with hundreds of apps.</p></details>
+                    <details class="bg-slate-800 p-6 rounded-lg group cursor-pointer"><summary class="font-semibold text-lg flex justify-between items-center">Can I use it on multiple devices at once? <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><p class="text-gray-400 mt-4">Our standard plans are for one active stream at a time. However, you can add more connections to your plan for a small additional fee to watch on multiple devices simultaneously. Please contact our support team to customize your plan.</p></details>
+                </div>
+            </div>
+        </section>
+        
+        <!-- =========== Legal Disclaimer Section =========== -->
+        <section class="py-16 bg-black">
+            <div class="container mx-auto max-w-4xl text-center" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-yellow-400 mb-4">Important Disclaimer</h3>
+                <div class="text-gray-400 text-sm space-y-4">
+                    <p>ZeeIPTV does not host, create, control, or run any TV channels or video content. We provide a service that acts as an index or directory, aggregating links to media streams that are publicly available on the internet from third-party providers. We have no association with and do not control these third-party providers.</p>
+                    <p>It is the sole responsibility of the user to ensure that their use of any streams or content accessed through our service complies with all applicable laws and regulations in their country of residence. Accessing copyrighted content without proper authorization may be illegal. We strongly encourage all users to verify the legality of their actions and to use a reputable VPN service for their online privacy and security.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========== Footer =========== -->
+    <footer class="bg-slate-900 text-gray-400 pt-16 pb-8 px-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2"><a href="#" class="text-2xl font-bold gradient-text mb-4 inline-block">ZeeIPTV</a><p class="max-w-md">The future of streaming is here. Our mission is to provide an affordable, reliable, and feature-rich entertainment service for global users through our unique multi-network platform.</p></div>
+            <div><h4 class="font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2"><li><a href="#platform" class="hover:text-green-400 transition-colors">Our Platform</a></li><li><a href="#download" class="hover:text-green-400 transition-colors">Download Apps</a></li><li><a href="#pricing" class="hover:text-green-400 transition-colors">Pricing</a></li><li><a href="#faq" class="hover:text-green-400 transition-colors">FAQ</a></li></ul></div>
+            <div><h4 class="font-semibold text-white mb-4">Get In Touch</h4><ul class="space-y-3"><li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654z"/></svg><a href="https://wa.me/923299422773" class="hover:text-green-400 transition-colors">WhatsApp: +923299422773</a></li><li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23l7.68-6.92l-7.06 6.05l-4.22 1.34l1.62 4.76Z"/><path d="m21.43 3.32l-2.95 14.12a2.03 2.03 0 0 1-1.93 1.51a2.08 2.08 0 0 1-.52-.07l-4.22-1.34l-3.2 3.07a1.9 1.9 0 0 1-1.28.51a1.86 1.86 0 0 1-1.34-.58l-1.62-4.76L2.3 9.41a2.05 2.05 0 0 1 .15-2.83L18.6.16a2.05 2.05 0 0 1 2.83 3.16Z"/></svg><a href="https://t.me/+923299422773" class="hover:text-green-400 transition-colors">Telegram: +923299422773</a></li><li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 2l7.997 3.884A2 2 0 0019 7.616l-.001 6.768a2 2 0 00-1.996 2.116l-.007.132l-.01.127l-.013.123l-.017.119l-.02.115l-.025.111l-.03.106l-.034.101l-.04.094l-.045.088l-.05.082l-.056.075l-.062.068l-.067.06l-.074.053l-8 4l-8-4l-.074-.053l-.067-.06l-.062-.068l-.056-.075l-.05-.082l-.045-.088l-.04-.094l-.034-.101l-.03-.106l-.025-.111l-.02-.115l-.017-.119l-.013-.123l-.01-.127l-.007-.132A2 2 0 001 14.384V7.616a2 2 0 001.003-1.732zM10 4.144L4.098 7.116L10 9.856l5.902-2.74L10 4.144zM2 9.25l7 3.25v4.5l-7-3.25v-4.5z"/></svg><a href="mailto:info.hawkeyelhr@gmail.com" class="hover:text-green-400 transition-colors">info.hawkeyelhr@gmail.com</a></li></ul></div>
+        </div>
+        <div class="container mx-auto mt-12 pt-8 border-t border-slate-700 text-center text-sm"><p>© 2024 ZeeIPTV. All Rights Reserved.</p></div>
+    </footer>
+
+    <!-- Download Modal -->
+    <div id="download-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 opacity-0 pointer-events-none">
+        <div id="modal-content" class="bg-slate-800 w-full max-w-lg p-8 rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300"></div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        
+        const modal = document.getElementById('download-modal');
+        const modalContent = document.getElementById('modal-content');
+        
+        // <!-- IMPORTANT: REPLACE ALL '#' LINKS BELOW WITH YOUR ACTUAL GITHUB RAW LINKS -->
+        const modalData = {
+            zeeplayer: {
+                title: 'Download ZeePlayer (Official)',
+                html: `<p class="text-gray-300 mb-6">Our official app is recommended for the best experience on Android and Firestick devices. You may need to enable "Install from unknown sources" in your device's settings.</p>
+                       <a href="#" class="bg-green-500 hover:bg-green-600 text-slate-900 font-bold py-3 px-8 w-full block rounded-full text-center cta-button-glow transition-all duration-300">Download ZeePlayer.apk</a>
+                       <p class="text-xs text-gray-500 mt-4">For Firestick, use the Downloader app and enter the code: <strong>YOUR_ZEEPLAYER_CODE</strong></p>`
+            },
+            'iptv-smarters': {
+                title: 'Download IPTV Smarters Pro',
+                html: `<p class="text-gray-300 mb-6">IPTV Smarters is a popular third-party player. Use our direct download link below. When logging in, choose "Login with Xtream Codes API".</p>
+                       <a href="#" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 w-full block rounded-full text-center transition-all duration-300">Download SmartersPro.apk</a>
+                       <p class="text-xs text-gray-500 mt-4">For Firestick, use the Downloader app and enter the code: <strong>YOUR_SMARTERS_CODE</strong></p>`
+            },
+            'xtream-player': {
+                title: 'Download TiviMate / XCIPTV',
+                html: `<p class="text-gray-300 mb-6">These are powerful players favored by enthusiasts. Use your M3U or Xtream Codes login details with these apps.</p>
+                       <a href="#" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 w-full block rounded-full text-center transition-all duration-300 mb-4">Download TiviMate.apk</a>
+                       <a href="#" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 w-full block rounded-full text-center transition-all duration-300">Download XCIPTV.apk</a>`
+            },
+            'other-devices': {
+                title: 'Setup for Other Devices',
+                html: `<p class="text-gray-300 mb-4">For devices like Smart TVs (LG/Samsung), Apple TV, or PC, you will use your M3U link or Xtream Codes credentials.</p>
+                       <strong class="text-white">Your login details will be sent to your email after you sign up.</strong>
+                       <p class="text-gray-400 mt-4">You can use these details with apps like 'IPTV Smarters' from the official App Store, or VLC Player on PC.</p>`
+            }
+        };
+
+        function openModal(platform) {
+            const data = modalData[platform];
+            modalContent.innerHTML = `<div class="flex justify-between items-center mb-6"><h2 class="text-2xl font-bold">${data.title}</h2><button onclick="closeModal()" class="text-gray-400 text-4xl leading-none hover:text-white">×</button></div><div>${data.html}</div>`;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.add('scale-95');
+        }
+        
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    </script>
+</body>
+</html>
